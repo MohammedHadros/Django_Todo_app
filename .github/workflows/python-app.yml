@@ -33,4 +33,18 @@ jobs:
         EMAIL_FROM_USER: ${{ secrets.EMAIL_FROM_USER }}
         EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
       run: |
-        python manage.py test
+        coverage run manage.py test && coverage report --fail--under=75 && coverage xml
+
+
+    - name: Report coverage to codecov
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        EMAIL_FROM_USER: ${{ secrets.EMAIL_FROM_USER }}
+        EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+      uses: codecov/codecov/action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        file: /.coverage.xml
+        directory: ./coverage/reports/
+        fail_ci_if_error: true
+        verbose: true
