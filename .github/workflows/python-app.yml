@@ -33,4 +33,4 @@ jobs:
         EMAIL_FROM_USER: ${{ secrets.EMAIL_FROM_USER }}
         EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
       run: |
-        python maname.py test
+        python manage.py test
