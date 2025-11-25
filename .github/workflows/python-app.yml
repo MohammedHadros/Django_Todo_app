@@ -29,8 +29,8 @@ jobs:
         pip install -r requirements.txt
     - name: Test with Unittest
       env:
-        SECRET_KEY: ${{ secreets.SECRET_KEY }}
-        EMAIL_FROM_USER: ${{ secreets.EMAIL_FROM_USER }}
-        EMAIL_HOST_PASSWORD: ${{ secreets.EMAIL_HOST_PASSWORD }}
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        EMAIL_FROM_USER: ${{ secrets.EMAIL_FROM_USER }}
+        EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
       run: |
         python maname.py test
