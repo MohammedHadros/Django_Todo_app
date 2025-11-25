@@ -1,0 +1,23 @@
+{% extends "_partials/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="flex flex-col items-center justify-center h-screen text-center bg-gray-100 text-gray-800">
+    <img src="{% static 'img/404.png' %}" alt="Not Found" class="w-64 mb-8 animate-bounce">
+
+    <h1 class="text-6xl font-bold mb-4 text-red-600">404</h1>
+    <h2 class="text-2xl font-semibold mb-4">Oops! Page Not Found 😢</h2>
+    <p class="mb-8 text-lg">
+        The page you're looking for doesn’t exist or may have been moved.<br>
+        Let’s get you back to safety!
+    </p>
+
+    <a href="{% url 'Home' %}" class="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700 transition duration-300">
+        🏠 Go Back Home
+    </a>
+
+    <div class="mt-12 text-sm text-gray-500">
+        Made with ❤️ in Gaza
+    </div>
+</div>
+{% endblock content %}

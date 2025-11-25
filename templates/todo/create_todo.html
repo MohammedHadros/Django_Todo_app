@@ -1,0 +1,22 @@
+{% extends '_partials/base.html' %}
+ {% load static %}
+ {% block title %}
+Create ToDo
+ {% endblock title %}
+
+{% block content %}
+
+    <img src="{% static 'logo.png' %}" alt="" />
+    <h3>Creaete todo</h3>
+
+    <form method="POST" action="{% url 'create-todo' %}" class="ui form" >
+    {% csrf_token %}
+    {{form.as_p}}
+
+        <input type="submit" class="ui button primary" value="Submit">
+
+    </form>
+
+
+
+    {% endblock content %}

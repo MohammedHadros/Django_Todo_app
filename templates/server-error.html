@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Server Error (500)</title>
+    <link rel="stylesheet" href="{% static 'css/error.css' %}">
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #fff;
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            font-size: 5em;
+            margin: 0;
+            color: #ff4757;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ff6b81, 0 0 20px #ff4757; }
+            to { text-shadow: 0 0 20px #ff6b81, 0 0 40px #ff4757; }
+        }
+        p {
+            font-size: 1.2em;
+            margin: 10px 0 30px;
+            color: #adb5bd;
+        }
+        a {
+            background-color: #ff4757;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+        a:hover {
+            background-color: #ff6b81;
+        }
+        img {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <img src="{% static 'img/500.png' %}" alt="Error Image">
+    <h1>500</h1>
+    <p>Oops! Something went wrong on our end.<br>We’re working on it!</p>
+    <a href="/">Back to Home</a>
+</body>
+</html>

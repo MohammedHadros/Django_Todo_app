@@ -1,0 +1,16 @@
+{% extends "admin/base.html" %}
+{% load static %}
+{% block branding %}
+<div id="site-name" style="align-items: center;display: flex;">
+<img height='50px' src="{% static 'Logo.png' %}" alt="" class="logo">
+<a href="{% url 'admin:index' %}">List Adminstration</a>
+</div>
+{% if user.is_anonymous %}
+  {% include "admin/color_theme_toggle.html" %}
+{% endif %}
+{% endblock %}
+
+
+{% block extrastyle %}
+<link rel="stylesheet" href="{% static 'css/admin/admin.css' %}">
+{% endblock extrastyle %}
