@@ -1,0 +1,49 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Python application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Test with Unittest
+      env:
+        SECRET_KEY: ${{ secrets.SECRET_KEY }}
+        EMAIL_FROM_USER: ${{ secrets.EMAIL_FROM_USER }}
+        EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+      run: |
+        coverage run manage.py test && coverage report --fail-under=75 && coverage xml
+
+    - name: Report coverage to codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        # 1. Explicitly point to the correct file path.
+        files: ./coverage.xml
+        # 2. Disable Codecov's automatic search plugins (like pycoverage) 
+        #    to prevent conflicts with the file already generated.
+        plugins: ""
+        directory: ./coverage/reports/
+        fail_ci_if_error: true
+        verbose: true
