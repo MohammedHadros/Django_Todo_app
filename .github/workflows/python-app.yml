@@ -33,7 +33,7 @@ jobs:
         EMAIL_FROM_USER: ${{ secrets.EMAIL_FROM_USER }}
         EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
       run: |
-        coverage run manage.py test && coverage report --fail--under=75 && coverage xml
+        coverage run manage.py test && coverage report --fail-under=75 && coverage xml
 
 
     - name: Report coverage to codecov
