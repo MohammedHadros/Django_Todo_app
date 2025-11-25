@@ -35,16 +35,15 @@ jobs:
       run: |
         coverage run manage.py test && coverage report --fail-under=75 && coverage xml
 
-
     - name: Report coverage to codecov
-      env:
-        SECRET_KEY: ${{ secrets.SECRET_KEY }}
-        EMAIL_FROM_USER: ${{ secrets.EMAIL_FROM_USER }}
-        EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
       uses: codecov/codecov-action@v5
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./coverage.xml
+        # 1. Explicitly point to the correct file path.
+        files: ./coverage.xml
+        # 2. Disable Codecov's automatic search plugins (like pycoverage) 
+        #    to prevent conflicts with the file already generated.
+        plugins: ""
         directory: ./coverage/reports/
         fail_ci_if_error: true
         verbose: true
